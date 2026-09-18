@@ -1,0 +1,29 @@
+[project]
+name = "sample-moonshotai-on-aws"
+version = "0.1.0"
+description = "A collection of code samples and notebooks to get started with models like Kimi from Moonshot AI on AWS"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aws-bedrock-token-generator>=1.1.0",
+    "boto3>=1.43.66",
+    "ipykernel>=7.3.0",
+    "langchain>=1.3.14",
+    "langchain-aws>=1.7.0",
+    "openai>=2.53.0",
+    "python-dotenv>=1.2.2",
+    "strands-agents>=1.51.0",
+    "strands-agents-tools>=0.8.6",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+bypass-selection = true

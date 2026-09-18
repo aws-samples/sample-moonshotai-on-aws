@@ -1,0 +1,13 @@
+# Python:
+.ipynb_checkpoints/*
+.ipynb_checkpoints/
+.env
+.venv
+__pycache__
+*.egg-info
+*.whl
+dist/
+venv
+
+# Operating Systems:
+.DS_Store
