@@ -4,7 +4,7 @@ A collection of code samples and notebooks to get started with models from Kimi 
 
 ## Kimi Models on Amazon Bedrock
 
-Amazon Bedrock now supports Kimi K3! See the [example notebook](Kimi-On-Amazon-Bedrock/Kimi%20K3%20on%20Amazon%20Bedrock.ipynb) for a guide on how to get started.
+Amazon Bedrock now supports Kimi K3! See the [example notebook](Kimi-on-Amazon-Bedrock/Kimi%20K3%20on%20Amazon%20Bedrock.ipynb) for a guide on how to get started.
 
 Older Kimi models are also available on Amazon Bedrock - see the [Moonshot AI model cards](https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards-moonshot-ai.html) in the [Amazon Bedrock User Guide](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) for more information on currently supported models, API endpoints, and features.
 
