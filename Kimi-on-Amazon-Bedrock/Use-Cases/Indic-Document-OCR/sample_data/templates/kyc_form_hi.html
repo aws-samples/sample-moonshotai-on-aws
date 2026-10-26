@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- SYNTHETIC SAMPLE: fictional bank and applicant. ID number is masked. Not a real form. -->
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; background: #fff; font-family: "Nirmala UI", "Noto Sans Devanagari", "Mangal", sans-serif; color: #1a1a1a; }
+  .page { width: 1240px; height: 1754px; box-sizing: border-box; padding: 70px 80px; position: relative; }
+  h1 { text-align: center; margin: 0; font-size: 38px; }
+  .sub { text-align: center; font-size: 22px; margin: 6px 0 0; }
+  .form-title { text-align: center; font-size: 32px; font-weight: bold; margin: 28px 0 8px; border: 3px solid #222; padding: 10px; }
+  .note { font-size: 20px; margin-bottom: 26px; color: #444; }
+  .row { display: flex; align-items: flex-end; margin: 20px 0; font-size: 26px; }
+  .row .k { white-space: nowrap; margin-right: 14px; font-weight: 600; }
+  .row .v { flex: 1; border-bottom: 2px dotted #333; padding: 0 10px 4px; }
+  /* Handwritten entries: blue ink, slightly slanted */
+  .ink { color: #1d3fb0; font-style: italic; font-size: 29px; transform: rotate(-0.6deg); display: inline-block; }
+  .box { display: inline-block; width: 26px; height: 26px; border: 2px solid #222; margin: 0 8px 0 18px; vertical-align: middle; text-align: center; line-height: 24px; font-size: 24px; color: #1d3fb0; font-weight: bold; }
+  .section { font-size: 27px; font-weight: bold; background: #eee; padding: 8px 14px; margin-top: 30px; }
+  .declaration { font-size: 23px; line-height: 1.6; margin-top: 18px; }
+  .sign { display: flex; justify-content: space-between; margin-top: 50px; font-size: 25px; }
+  .sign-box { text-align: center; }
+  .sign-box svg { display: block; margin: 0 auto 4px; }
+  .sign-line { border-top: 2px solid #333; width: 360px; padding-top: 6px; }
+  .office { margin-top: 50px; border: 2px dashed #777; padding: 16px; font-size: 21px; color: #555; }
+  .footer { position: absolute; bottom: 60px; left: 80px; right: 80px; font-size: 19px; border-top: 2px solid #999; padding-top: 12px; color: #444; }
+  .watermark { position: absolute; top: 820px; left: 120px; transform: rotate(-30deg); font-size: 120px; color: rgba(200, 0, 0, 0.10); font-weight: bold; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="watermark">नमूना • SAMPLE</div>
+
+  <h1>काल्पनिक सहकारी बैंक लिमिटेड</h1>
+  <p class="sub">Kalpanik Sahkari Bank Ltd. (काल्पनिक संस्था — केवल प्रदर्शन हेतु) &nbsp;|&nbsp; शाखा: गोमती नगर, लखनऊ</p>
+
+  <div class="form-title">पता परिवर्तन एवं केवाईसी अद्यतन आवेदन पत्र</div>
+  <div class="note">कृपया सभी विवरण स्पष्ट अक्षरों में भरें। * चिह्नित कॉलम अनिवार्य हैं।</div>
+
+  <div class="section">भाग क — आवेदक का विवरण</div>
+  <div class="row"><span class="k">1. आवेदक का पूरा नाम *</span><span class="v"><span class="ink">राजेश कुमार यादव</span></span></div>
+  <div class="row"><span class="k">2. पिता / पति का नाम *</span><span class="v"><span class="ink">रामप्रसाद यादव</span></span></div>
+  <div class="row"><span class="k">3. जन्म तिथि *</span><span class="v"><span class="ink">१४ / ०३ / १९८८</span></span></div>
+  <div class="row"><span class="k">4. लिंग *</span>
+    <span class="box">✓</span>पुरुष <span class="box"></span>महिला <span class="box"></span>अन्य
+  </div>
+  <div class="row"><span class="k">5. मोबाइल नंबर *</span><span class="v"><span class="ink">9876543210</span></span></div>
+
+  <div class="section">भाग ख — नया पता</div>
+  <div class="row"><span class="k">6. पता *</span><span class="v"><span class="ink">फ्लैट नं. 302, साईं कृपा अपार्टमेंट, विभूति खंड, गोमती नगर</span></span></div>
+  <div class="row"><span class="k">7. शहर / ज़िला *</span><span class="v"><span class="ink">लखनऊ</span></span><span class="k" style="margin-left:24px">राज्य *</span><span class="v"><span class="ink">उत्तर प्रदेश</span></span></div>
+  <div class="row"><span class="k">8. पिन कोड *</span><span class="v"><span class="ink">226010</span></span></div>
+
+  <div class="section">भाग ग — पहचान / पते का प्रमाण</div>
+  <div class="row"><span class="k">9. दस्तावेज़ का प्रकार *</span>
+    <span class="box">✓</span>आधार (मास्क्ड) <span class="box"></span>पैन कार्ड <span class="box"></span>मतदाता पहचान पत्र
+  </div>
+  <div class="row"><span class="k">10. दस्तावेज़ संख्या *</span><span class="v"><span class="ink">XXXX XXXX 4821</span></span></div>
+
+  <div class="section">घोषणा</div>
+  <div class="declaration">
+    मैं घोषणा करता/करती हूँ कि ऊपर दी गई सभी जानकारी मेरी जानकारी और विश्वास के अनुसार सत्य एवं सही है।
+    किसी भी जानकारी के गलत पाए जाने पर बैंक मेरे खाते पर उचित कार्रवाई कर सकता है।
+  </div>
+
+  <div class="sign">
+    <div>स्थान: <span class="ink">लखनऊ</span><br>दिनांक: <span class="ink">१८/१०/२०२६</span></div>
+    <div class="sign-box">
+      <svg width="300" height="80" viewBox="0 0 300 80">
+        <path d="M10 55 C 30 10, 50 10, 55 50 S 80 70, 95 30 S 120 5, 130 45 C 140 70, 160 20, 175 40 S 210 60, 230 30 L 290 35"
+              fill="none" stroke="#1d3fb0" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="sign-line">आवेदक के हस्ताक्षर</div>
+    </div>
+  </div>
+
+  <div class="office">केवल कार्यालय उपयोग हेतु: &nbsp; प्राप्ति दिनांक ____________ &nbsp; सत्यापनकर्ता ____________ &nbsp; मुहर</div>
+
+  <div class="footer">
+    यह एक काल्पनिक नमूना दस्तावेज़ है, जिसे केवल तकनीकी प्रदर्शन के लिए बनाया गया है। सभी नाम, पते और संख्याएँ काल्पनिक हैं।<br>
+    This is a synthetic sample document created for demonstration only. All names, addresses and numbers are fictional.
+  </div>
+</div>
+</body>
+</html>
