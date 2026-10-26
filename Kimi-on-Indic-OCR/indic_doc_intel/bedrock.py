@@ -9,7 +9,6 @@ import base64
 import io
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional, Union
 
 from aws_bedrock_token_generator import provide_token
 from openai import OpenAI
@@ -46,7 +45,7 @@ def refresh_api_key(client: OpenAI, region: str) -> None:
     client.api_key = provide_token(region=region)
 
 
-def load_image(image: Union[str, Path, bytes]) -> dict:
+def load_image(image: str | Path | bytes) -> dict:
     """Return a Chat Completions image content part for a file path or raw bytes."""
     raw = Path(image).read_bytes() if isinstance(image, (str, Path)) else image
 
@@ -66,7 +65,10 @@ def load_image(image: Union[str, Path, bytes]) -> dict:
     return {
         "type": "image_url",
         # "detail" is honoured on Chat Completions; "high" keeps small Devanagari text legible.
-        "image_url": {"url": f"data:image/{image_format};base64,{encoded}", "detail": "high"},
+        "image_url": {
+            "url": f"data:image/{image_format};base64,{encoded}",
+            "detail": "high",
+        },
     }
 
 
@@ -90,8 +92,8 @@ def chat_completion(
     messages: list,
     system_prompt: str,
     max_tokens: int,
-    temperature: Optional[float] = None,
-    reasoning_effort: Optional[str] = None,
+    temperature: float | None = None,
+    reasoning_effort: str | None = None,
 ) -> ChatResult:
     request = {
         "model": model_id,

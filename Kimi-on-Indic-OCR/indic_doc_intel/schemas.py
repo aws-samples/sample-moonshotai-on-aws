@@ -51,4 +51,6 @@ def get_schema(document_type: str) -> dict:
         return DOCUMENT_SCHEMAS[document_type]
     except KeyError:
         supported = ", ".join(sorted(DOCUMENT_SCHEMAS))
-        raise ValueError(f"Unknown document type '{document_type}'. Supported: {supported}") from None
+        raise ValueError(
+            f"Unknown document type '{document_type}'. Supported: {supported}"
+        ) from None

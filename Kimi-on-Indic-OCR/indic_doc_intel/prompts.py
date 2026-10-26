@@ -44,11 +44,16 @@ Question: {question}"""
 
 def build_extraction_prompt(schema: dict) -> str:
     if schema["fields"]:
-        field_list = "\n".join(f'    "{name}": {instruction}' for name, instruction in schema["fields"].items())
+        field_list = "\n".join(
+            f'    "{name}": {instruction}'
+            for name, instruction in schema["fields"].items()
+        )
         fields_instruction = FIELDS_WITH_SCHEMA.format(field_list=field_list)
     else:
         fields_instruction = FIELDS_WITHOUT_SCHEMA
-    return EXTRACTION_PROMPT.format(description=schema["description"], fields_instruction=fields_instruction)
+    return EXTRACTION_PROMPT.format(
+        description=schema["description"], fields_instruction=fields_instruction
+    )
 
 
 def build_question_prompt(question: str) -> str:

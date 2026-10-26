@@ -5,9 +5,13 @@
 import json
 import logging
 import re
-from typing import Optional
 
-from .bedrock import ChatResult, chat_completion, get_bedrock_runtime_client, refresh_api_key
+from .bedrock import (
+    ChatResult,
+    chat_completion,
+    get_bedrock_runtime_client,
+    refresh_api_key,
+)
 from .config import Settings
 from .prompts import JSON_REPAIR_PROMPT
 
@@ -31,7 +35,7 @@ def add_usage(total: dict, usage: dict) -> None:
 
 
 class KimiK3Client:
-    def __init__(self, settings: Optional[Settings] = None, client=None):
+    def __init__(self, settings: Settings | None = None, client=None):
         self.settings = settings or Settings.from_env()
         # Only refresh the API key on clients this class created itself.
         self._owns_client = client is None
@@ -50,7 +54,10 @@ class KimiK3Client:
             reasoning_effort=self.settings.reasoning_effort,
         )
         if reply.finish_reason == "length":
-            logger.warning("Reply hit max_tokens (%d) and is truncated; raise KIMI_MAX_TOKENS", self.settings.max_tokens)
+            logger.warning(
+                "Reply hit max_tokens (%d) and is truncated; raise KIMI_MAX_TOKENS",
+                self.settings.max_tokens,
+            )
         return reply
 
     def chat_json(self, messages: list, system_prompt: str, usage: dict) -> dict:

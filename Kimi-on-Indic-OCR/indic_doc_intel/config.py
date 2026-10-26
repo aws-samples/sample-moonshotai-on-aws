@@ -4,7 +4,6 @@
 
 import os
 from dataclasses import dataclass
-from typing import Optional
 
 # India cross-Region inference profile for Kimi K3. Routes requests between
 # Asia Pacific (Mumbai) ap-south-1 and Asia Pacific (Hyderabad) ap-south-2,
@@ -20,9 +19,9 @@ class Settings:
     # Counts reasoning tokens as well as the answer.
     max_tokens: int = 16384
     # One of none, low, medium, high, xhigh, max. Unset uses the model default (max).
-    reasoning_effort: Optional[str] = None
+    reasoning_effort: str | None = None
     # Only sent when set explicitly; Kimi K3 is evaluated at its default sampling settings.
-    temperature: Optional[float] = None
+    temperature: float | None = None
 
     @classmethod
     def from_env(cls) -> "Settings":

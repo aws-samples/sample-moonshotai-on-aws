@@ -5,7 +5,6 @@
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional, Union
 
 from .bedrock import load_image
 from .client import KimiK3Client, add_usage
@@ -13,7 +12,14 @@ from .config import Settings
 from .prompts import SYSTEM_PROMPT, build_extraction_prompt, build_question_prompt
 from .schemas import get_schema
 
-REQUIRED_KEYS = ("document_type", "detected_languages", "transcription", "fields", "english_summary", "uncertain_fields")
+REQUIRED_KEYS = (
+    "document_type",
+    "detected_languages",
+    "transcription",
+    "fields",
+    "english_summary",
+    "uncertain_fields",
+)
 
 
 @dataclass
@@ -39,7 +45,9 @@ class DocumentResult:
 def normalise_result(data: dict, schema: dict) -> dict:
     """Make sure every top-level key and every schema field is present."""
     for key in REQUIRED_KEYS:
-        data.setdefault(key, [] if key in ("detected_languages", "uncertain_fields") else None)
+        data.setdefault(
+            key, [] if key in ("detected_languages", "uncertain_fields") else None
+        )
     if not isinstance(data["fields"], dict):
         data["fields"] = {}
     for name in schema["fields"]:
@@ -48,23 +56,30 @@ def normalise_result(data: dict, schema: dict) -> dict:
 
 
 class IndicDocumentIntelligence:
-    def __init__(self, settings: Optional[Settings] = None, client=None):
+    def __init__(self, settings: Settings | None = None, client=None):
         self.kimi = KimiK3Client(settings, client)
         self.settings = self.kimi.settings
 
-    def extract(self, image: Union[str, Path, bytes], document_type: str = "generic") -> DocumentResult:
+    def extract(
+        self, image: str | Path | bytes, document_type: str = "generic"
+    ) -> DocumentResult:
         """OCR the document image and return structured fields plus an English summary."""
         schema = get_schema(document_type)
         messages = [
             {
                 "role": "user",
                 # The model card recommends placing images before text.
-                "content": [load_image(image), {"type": "text", "text": build_extraction_prompt(schema)}],
+                "content": [
+                    load_image(image),
+                    {"type": "text", "text": build_extraction_prompt(schema)},
+                ],
             }
         ]
         usage: dict = {}
         data = self.kimi.chat_json(messages, SYSTEM_PROMPT, usage)
-        return DocumentResult(data=normalise_result(data, schema), conversation=messages, usage=usage)
+        return DocumentResult(
+            data=normalise_result(data, schema), conversation=messages, usage=usage
+        )
 
     def ask(self, result: DocumentResult, question: str) -> str:
         """Ask a follow-up question (e.g. in Hinglish) about an already extracted document.
