@@ -2,6 +2,36 @@
 
 A collection of code samples and notebooks to get started with models from Kimi / Moonshot AI on AWS. Open a PR if you would like to contribute! :twisted_rightwards_arrows:
 
+## Prerequisites
+
+To get started with the Python code samples in this repository, you'll need:
+
+- An [AWS Account](https://signin.aws.amazon.com/signup?request_type=register)
+- The [AWS CLI](https://aws.amazon.com/cli/) installed and configured with credentials
+- [Python](https://www.python.org/downloads/) v3.12 or later
+
+Install the required Python libraries, listed in [pyproject.toml](./pyproject.toml), with your favourite Python environment manager.
+
+For example with [uv](https://docs.astral.sh/uv/) (recommended), run the following from the repo root folder:
+
+```sh
+uv venv --allow-existing .venv
+uv sync
+```
+
+...Or with pip and venv:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+```
+
+When the virtual environment is set up in the `.venv` folder, and you open one of the Python notebook `ipynb` files, it should be automatically detected by most IDEs.
+- In VS Code / Kiro / similar, if you're prompted to choose a notebook kernel, select `Python Environments > .venv`
+- In Amazon SageMaker JupyterLab Notebooks, just use the base `conda_python3` kernel and then `!pip install -e .` to install the libraries.
+
+
 ## Kimi Models on Amazon Bedrock
 
 Amazon Bedrock now supports Kimi K3! See the [example notebook](Kimi-on-Amazon-Bedrock/Kimi%20K3%20on%20Amazon%20Bedrock.ipynb) for a guide on how to get started.
