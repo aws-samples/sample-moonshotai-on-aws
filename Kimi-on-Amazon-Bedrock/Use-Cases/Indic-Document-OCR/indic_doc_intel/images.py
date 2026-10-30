@@ -5,7 +5,6 @@
 import base64
 import io
 from pathlib import Path
-from typing import Union
 
 from PIL import Image
 
@@ -15,7 +14,7 @@ MAX_IMAGE_BYTES = 3_750_000
 MAX_IMAGE_SIDE = 2048
 
 
-def load_image(image: Union[str, Path, bytes]) -> dict:
+def load_image(image: str | Path | bytes) -> dict:
     """Return a Chat Completions image content part for a file path or raw bytes."""
     raw = Path(image).read_bytes() if isinstance(image, (str, Path)) else image
 
@@ -35,5 +34,8 @@ def load_image(image: Union[str, Path, bytes]) -> dict:
     return {
         "type": "image_url",
         # "detail" is honoured on Chat Completions; "high" keeps small Devanagari text legible.
-        "image_url": {"url": f"data:image/{image_format};base64,{encoded}", "detail": "high"},
+        "image_url": {
+            "url": f"data:image/{image_format};base64,{encoded}",
+            "detail": "high",
+        },
     }

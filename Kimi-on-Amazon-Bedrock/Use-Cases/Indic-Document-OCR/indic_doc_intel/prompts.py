@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: MIT-0
 """Prompt templates."""
 
-from typing import Optional
-
 SYSTEM_PROMPT = """You are a document intelligence assistant for Indian documents.
 You read scanned documents written in Hindi and other Indic languages, often mixed with English.
 Rules:
@@ -28,7 +26,9 @@ FIELDS_WITHOUT_SCHEMA = (
     "an object of the 5-10 most important key-value pairs in the document, "
     "with snake_case English keys"
 )
-GENERIC_DESCRIPTION = "Any Indic-language document. Choose the most useful key fields yourself."
+GENERIC_DESCRIPTION = (
+    "Any Indic-language document. Choose the most useful key fields yourself."
+)
 
 JSON_REPAIR_PROMPT = (
     "Your previous reply was not valid JSON. Reply again with only the JSON object, "
@@ -45,15 +45,20 @@ Keep the answer short and include the exact values (amounts, dates, numbers) fro
 Question: {question}"""
 
 
-def build_extraction_prompt(schema: Optional[dict]) -> str:
+def build_extraction_prompt(schema: dict | None) -> str:
     """Build the extraction prompt. With no schema (or no fields), the model picks the fields."""
     if schema and schema.get("fields"):
-        field_list = "\n".join(f'    "{name}": {instruction}' for name, instruction in schema["fields"].items())
+        field_list = "\n".join(
+            f'    "{name}": {instruction}'
+            for name, instruction in schema["fields"].items()
+        )
         fields_instruction = FIELDS_WITH_SCHEMA.format(field_list=field_list)
     else:
         fields_instruction = FIELDS_WITHOUT_SCHEMA
     description = (schema or {}).get("description") or GENERIC_DESCRIPTION
-    return EXTRACTION_PROMPT.format(description=description, fields_instruction=fields_instruction)
+    return EXTRACTION_PROMPT.format(
+        description=description, fields_instruction=fields_instruction
+    )
 
 
 def build_question_prompt(question: str) -> str:

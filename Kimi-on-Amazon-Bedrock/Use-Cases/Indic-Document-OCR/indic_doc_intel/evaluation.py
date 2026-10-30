@@ -34,4 +34,8 @@ def compare_fields(extracted: dict, expected: dict) -> list:
 def load_expected(image_path) -> dict:
     """Load sample_data/expected/<image stem>.json for a sample image."""
     image_path = Path(image_path)
-    return json.loads((image_path.parent / "expected" / f"{image_path.stem}.json").read_text(encoding="utf-8"))
+    return json.loads(
+        (image_path.parent / "expected" / f"{image_path.stem}.json").read_text(
+            encoding="utf-8"
+        )
+    )

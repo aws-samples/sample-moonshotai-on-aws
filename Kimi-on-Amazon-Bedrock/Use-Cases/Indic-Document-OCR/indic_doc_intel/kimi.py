@@ -9,7 +9,6 @@ import json
 import logging
 import re
 from dataclasses import dataclass, field
-from typing import Optional
 
 from aws_bedrock_token_generator import provide_token
 from openai import OpenAI
@@ -70,7 +69,7 @@ def _usage_to_dict(usage) -> dict:
 
 
 class KimiK3Client:
-    def __init__(self, settings: Optional[Settings] = None, client: Optional[OpenAI] = None):
+    def __init__(self, settings: Settings | None = None, client: OpenAI | None = None):
         self.settings = settings or Settings.from_env()
         # Only refresh the API key on clients this class created itself.
         self._owns_client = client is None
@@ -96,7 +95,10 @@ class KimiK3Client:
         response = self.client.chat.completions.create(**request)
         choice = response.choices[0]
         if choice.finish_reason == "length":
-            logger.warning("Reply hit max_tokens (%d) and is truncated; raise KIMI_MAX_TOKENS", self.settings.max_tokens)
+            logger.warning(
+                "Reply hit max_tokens (%d) and is truncated; raise KIMI_MAX_TOKENS",
+                self.settings.max_tokens,
+            )
 
         # Kimi K3 returns its reasoning in a separate reasoning_content field. Only the
         # final answer is kept in the conversation history.
